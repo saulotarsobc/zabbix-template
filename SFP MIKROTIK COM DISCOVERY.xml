@@ -107,7 +107,7 @@
                             <preprocessing>
                                 <step>
                                     <type>MULTIPLIER</type>
-                                    <params>0.01</params>
+                                    <params>0.001</params>
                                 </step>
                             </preprocessing>
                         </item_prototype>
