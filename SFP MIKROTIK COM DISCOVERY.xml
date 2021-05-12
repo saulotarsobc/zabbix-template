@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2021-05-12T12:26:57Z</date>
+    <groups>
+        <group>
+            <name>MIKROTIKS</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>SFP MIKROTIK COM DISCOVERY</template>
+            <name>SFP MIKROTIK COM DISCOVERY</name>
+            <groups>
+                <group>
+                    <name>MIKROTIKS</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>SFP</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>discovery sfp</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#NAME},1.3.6.1.4.1.14988.1.1.19.1.1.2]</snmp_oid>
+                    <key>discovery.sfp</key>
+                    <delay>5m</delay>
+                    <lifetime>1d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Bias Current {#NAME}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.8.{#SNMPINDEX}</snmp_oid>
+                            <key>bias.current[{#NAME}]</key>
+                            <delay>5m</delay>
+                            <units>mA</units>
+                            <applications>
+                                <application>
+                                    <name>SFP</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Gbic Temperature {#NAME}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.6.{#SNMPINDEX}</snmp_oid>
+                            <key>gbic.temperature[{#NAME}]</key>
+                            <delay>5m</delay>
+                            <units>C</units>
+                            <applications>
+                                <application>
+                                    <name>SFP</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Optc {#NAME} Rx</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.10.{#SNMPINDEX}</snmp_oid>
+                            <key>optc.rx[{#NAME}]</key>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>SFP</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Optc {#NAME} Tx</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.9.{#SNMPINDEX}</snmp_oid>
+                            <key>optc.tx[{#NAME}]</key>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>SFP</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Suply Voltage {#NAME}</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.14988.1.1.19.1.1.7.{#SNMPINDEX}</snmp_oid>
+                            <key>suply.voltage[{#NAME}]</key>
+                            <delay>5m</delay>
+                            <units>V</units>
+                            <applications>
+                                <application>
+                                    <name>SFP</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>MULTIPLIER</type>
+                                    <params>0.01</params>
+                                </step>
+                            </preprocessing>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Optc Rx - Tx {#NAME}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>SFP MIKROTIK COM DISCOVERY</host>
+                                        <key>optc.rx[{#NAME}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>F63100</color>
+                                    <item>
+                                        <host>SFP MIKROTIK COM DISCOVERY</host>
+                                        <key>optc.tx[{#NAME}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
